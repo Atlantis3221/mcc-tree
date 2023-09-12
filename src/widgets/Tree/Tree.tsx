@@ -1,19 +1,23 @@
-import { useEffect, useState } from "react";
-import { AppButton } from "../../shared/ui/AppButton/AppButton";
-import TreeItem from "../../shared/ui/TreeItem/TreeItem";
-import './style.css'
+import { FC } from "react";
+import { ITree } from "../../entities/Tree/ITree";
+import TreeItem from "./TreeItem/TreeItem";
 
-export default function Tree({ mutableTree, deleteItem }: any) {
+import "./style.css";
 
-    return (
-        <>
-            <ul style={{ padding: '32px' }}>
-                {mutableTree.map((node: any) => (
-                    <div className="item-wrapper">
-                    <TreeItem node={node} key={node.key} deleteItem={deleteItem} />
-                    </div>
-                ))}
-            </ul>
-        </>
-    );
+interface IProps {
+  data: ITree[];
+  onDelete: (key: string) => void;
 }
+const Tree: FC<IProps> = ({ data, onDelete }) => {
+  return (
+      <ul style={{ padding: "32px" }}>
+        {data.map((node) => (
+          <div className="item-wrapper" key={node.key}>
+            <TreeItem node={node} onDelete={onDelete} />
+          </div>
+        ))}
+      </ul>
+  );
+};
+
+export default Tree;

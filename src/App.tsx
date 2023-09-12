@@ -1,11 +1,13 @@
-import './App.css'
-import Layout from './shared/layout/Layout'
+import "./App.css";
+import TreeRoot from "./page/TreeRoot";
+import Layout from "./shared/layout/Layout";
 
-function App() {
-
+const App = () => {
   return (
-    <Layout />
-  )
+    <Layout>
+      <TreeRoot />
+    </Layout>
+  );
 }
 
-export default App
+export default App;
