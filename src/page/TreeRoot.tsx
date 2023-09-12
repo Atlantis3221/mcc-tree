@@ -1,4 +1,4 @@
-import Tree from "../widgets/Tree/Tree";
+import Tree from "../features/Tree/Tree";
 import { AppButton } from "../shared/ui/AppButton/AppButton";
 import { useState } from "react";
 import { TREE_DEFAULT_DATA } from "../entities/Tree/TREE_DEFAULT_DATA";

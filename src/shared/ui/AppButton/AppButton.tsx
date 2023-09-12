@@ -1,23 +1,17 @@
-import './style.css';
+import "./style.css";
 
 interface AppButtonProps {
-    onClick?(e?: Event): void;
-    className?: string;
-    text?: string;
+  onClick?: () => void;
+  className?: string;
+  text?: string;
 }
 
 export function AppButton(props: AppButtonProps) {
-    const {
-        text,
-    } = props;
+  const { onClick, text } = props;
 
-    return (
-        <button
-            onClick={props.onClick}
-        >
-            <p>
-                {text}
-            </p>
-        </button>
-    )
+  return (
+    <button onClick={onClick}>
+      <p>{text}</p>
+    </button>
+  );
 }
