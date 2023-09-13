@@ -1,0 +1,11 @@
+.label {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.label__arrow_open {
+    transform: rotate(90deg);
+    transition: all;
+}

@@ -10,13 +10,13 @@ interface IProps {
 }
 const Tree: FC<IProps> = ({ data, onDelete }) => {
   return (
-      <ul style={{ padding: "32px" }}>
-        {data.map((node) => (
-          <div className="item-wrapper" key={node.key}>
-            <TreeItem node={node} onDelete={onDelete} />
-          </div>
-        ))}
-      </ul>
+    <ul style={{ padding: "32px" }}>
+      {data.map((node) => (
+        <div className="item-wrapper" key={node.key}>
+          <TreeItem node={node} onDelete={onDelete} />
+        </div>
+      ))}
+    </ul>
   );
 };
 

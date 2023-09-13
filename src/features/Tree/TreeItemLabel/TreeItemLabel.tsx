@@ -1,20 +1,30 @@
 import { FC } from "react";
 import { AppButton } from "../../../shared/ui/AppButton/AppButton";
 import { ITree } from "../../../entities/Tree/ITree";
+import './style.css'
 
-const styles = { marginBottom: "10px" };
 interface ITreeItemLabelProps {
-    onLabelClick: () => void;
-    onDelete: () => void;
-    node: ITree;
+  isOpen: boolean;
+  onLabelClick: () => void;
+  onDelete: () => void;
+  onAddChildren: () => void;
+  node: ITree;
 }
 export const TreeItemLabel: FC<ITreeItemLabelProps> = ({
-    onLabelClick, onDelete, node,
+  isOpen,
+  onLabelClick,
+  onDelete,
+  onAddChildren,
+  node,
 }) => {
-    return (
-        <div style={styles}>
-            <span onClick={onLabelClick}>{node.label}</span>
-            <AppButton text="delete" onClick={onDelete} />
-        </div>
-    );
+  return (
+    <div className="label">
+      <div className={`${isOpen ? 'label__arrow_open' : 'label__arrow'}`}>
+        &#10095;
+      </div>
+      <span onClick={onLabelClick}>{node.label}</span>
+      <AppButton text="&#215;" onClick={onDelete} />
+      <AppButton text="add children" onClick={onAddChildren} />
+    </div>
+  );
 };
