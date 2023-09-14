@@ -11,7 +11,7 @@ export function AppButton(props: AppButtonProps) {
 
   return (
     <button onClick={onClick}>
-      <p>{text}</p>
+      <span>{text}</span>
     </button>
   );
 }

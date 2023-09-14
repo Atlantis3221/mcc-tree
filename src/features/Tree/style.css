@@ -1,3 +1,7 @@
+.tree-list {
+    padding: 16px;
+}
+
 .item-wrapper {
     display: flex;
     flex-direction: column;

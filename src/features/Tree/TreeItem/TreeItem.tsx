@@ -1,24 +1,39 @@
-import { FC, useState } from "react";
+import {FC, useEffect, useState} from "react";
 import Tree from "../Tree";
 import { ITree } from "../../../entities/Tree/ITree";
 import { TreeItemLabel } from "../TreeItemLabel/TreeItemLabel";
+import './style.css'
 
 interface IProps {
   node: ITree;
   onDelete: (key: string) => void;
+  onEdit: (key: string, value: string) => void;
 }
 
-const styles = { paddingLeft: "10px", borderLeft: "1px solid black" };
 
-const TreeItem: FC<IProps> = ({ node, onDelete }) => {
-  const [children, setChildren] = useState(node.children);
+const TreeItem: FC<IProps> = ({ node, onDelete, onEdit }) => {
+
+  const [children, setChildren] = useState([]);
+  const [isEditable, setIsEditable] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setChildren(node.children)
+  }, [node])
 
   const handleDeleteChildren = (key: string) => {
     setChildren((prevChildren) =>
       prevChildren.filter((item) => item.key !== key)
     );
   };
+
+  const handleEditItem = (key:string, value: string) => {
+    const newTreeData = [...children]
+    const findedIndex = newTreeData.findIndex((item) => item.key == key)
+    console.log(key,value)
+    newTreeData[findedIndex].label = value
+    setChildren(newTreeData)
+  }
 
   const handleAddChildren = () => {
     setChildren((prevChildren) => [
@@ -31,6 +46,10 @@ const TreeItem: FC<IProps> = ({ node, onDelete }) => {
     ]);
   };
 
+  const toggleEdit = () => {
+    setIsEditable((prevEditable) => !prevEditable);
+  }
+
   const toggleOpen = () => {
     setIsOpen((prevOpen) => !prevOpen);
   };
@@ -39,18 +58,22 @@ const TreeItem: FC<IProps> = ({ node, onDelete }) => {
     onDelete(node.key);
   };
 
+
   return (
     <>
       <TreeItemLabel
         isOpen={isOpen}
-        onLabelClick={toggleOpen}
+        isEditable={isEditable}
+        onArrowClick={toggleOpen}
+        onLabelClick={toggleEdit}
         onAddChildren={handleAddChildren}
         onDelete={handleDeleteRoot}
+        onEdit={onEdit}
         node={node}
       />
 
-      <ul style={styles}>
-        {isOpen && <Tree data={children} onDelete={handleDeleteChildren} />}
+      <ul className="item-list">
+        {isOpen && <Tree data={children} onDelete={handleDeleteChildren} onEdit={handleEditItem} />}
       </ul>
     </>
   );

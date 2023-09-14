@@ -7,13 +7,14 @@ import "./style.css";
 interface IProps {
   data: ITree[];
   onDelete: (key: string) => void;
+  onEdit: (key:string, value: string) => void;
 }
-const Tree: FC<IProps> = ({ data, onDelete }) => {
+const Tree: FC<IProps> = ({ data, onDelete, onEdit }) => {
   return (
-    <ul style={{ padding: "32px" }}>
+    <ul className="tree-list">
       {data.map((node) => (
         <div className="item-wrapper" key={node.key}>
-          <TreeItem node={node} onDelete={onDelete} />
+          <TreeItem node={node} onDelete={onDelete} onEdit={onEdit} />
         </div>
       ))}
     </ul>
