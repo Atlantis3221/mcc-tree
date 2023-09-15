@@ -30,7 +30,6 @@ const TreeItem: FC<IProps> = ({ node, onDelete, onEdit }) => {
   const handleEditItem = (key:string, value: string) => {
     const newTreeData = [...children]
     const findedIndex = newTreeData.findIndex((item) => item.key == key)
-    console.log(key,value)
     newTreeData[findedIndex].label = value
     setChildren(newTreeData)
   }
