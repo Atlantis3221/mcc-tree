@@ -32,7 +32,7 @@ export const TreeItemLabel: FC<ITreeItemLabelProps> = ({
       </div>
       <span>{isEditable ? <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} /> : node.label}</span>
       <AppButton text="&#215;" onClick={onDelete} />
-      <AppButton text="&#9998;" onClick={() => {onLabelClick();onEdit(node.key, inputValue);console.log(inputValue)}} />
+      <AppButton text="&#9998;" onClick={() => {onLabelClick();onEdit(node.key, inputValue)}} />
       <AppButton text="add children" onClick={onAddChildren} />
     </div>
   );
