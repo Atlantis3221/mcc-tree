@@ -4,7 +4,7 @@ import { useState } from "react";
 import { TREE_DEFAULT_DATA } from "../entities/Tree/TREE_DEFAULT_DATA";
 
 const TreeRoot = () => {
-  const [treeData, setTreeData] = useState(structuredClone(TREE_DEFAULT_DATA));
+  const [treeData, setTreeData] = useState(TREE_DEFAULT_DATA);
 
   //по ключу удаляет родительский элемент
   const deleteItem = (key: string) => {
@@ -12,15 +12,12 @@ const TreeRoot = () => {
   };
 
   const editItem = (key:string, value: string) => {
-    const newTreeData = [...treeData]
-    const findedIndex = newTreeData.findIndex((item) => item.key == key)
-    newTreeData[findedIndex].label = value;
-    setTreeData(newTreeData)
+    setTreeData((prevState) => prevState.map((item) => item.key === key ? {...item, label: value} : item))
   }
 
   //возвращает дерево к первоначальному виду
   const resetTree = () => {
-    setTreeData(structuredClone(TREE_DEFAULT_DATA));
+    setTreeData(TREE_DEFAULT_DATA);
   };
 
   //добавляет объект на верхний уровень дерева, в перспективе добавил бы форму для редактирования глубины дочерних элементов и уникальный ключ
